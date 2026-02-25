@@ -22,7 +22,7 @@ public class BadgeDTO {
     private Boolean isActive;
 
     @Size(max = 50)
-    private String key;
+    private String badgeKey;
 
     @Size(max = 100)
     private String name;

@@ -44,12 +44,12 @@ public class AdminItemService {
         item.setPrice(request.getPrice());
         item.setType(request.getItemType());
 
-        if(request.getKey() != null && !request.getKey().equals(item.getKey())){
+        if(request.getItemKey() != null && !request.getItemKey().equals(item.getItemKey())){
             // 해당 key가 이미 다른 아이템에서 사용 중이라면 중복
-            if(itemService.itemKeyExists(request.getKey())){
+            if(itemService.itemKeyExists(request.getItemKey())){
                 throw new CommonException(ResponseCode.DUPLICATE_ITEM_KEY);
             }
-            item.setKey(request.getKey());
+            item.setItemKey(request.getItemKey());
         }
         if (request.getIsListed() != null) {
             item.setIsListed(request.getIsListed());
@@ -69,7 +69,7 @@ public class AdminItemService {
         return items.stream()
                 .map(item -> ItemDTO.builder()
                         .id(item.getId())
-                        .itemKey(item.getKey())
+                        .itemKey(item.getItemKey())
                         .name(item.getName())
                         .description(item.getDescription())
                         .price(item.getPrice())
@@ -95,7 +95,7 @@ public class AdminItemService {
         }
 
         Item item = Item.builder()
-                .key(request.getItemKey())
+                .itemKey(request.getItemKey())
                 .name(request.getItemName())
                 .description(request.getItemDescription())
                 .price(request.getItemPrice())
@@ -117,7 +117,7 @@ public class AdminItemService {
         Item item = itemService.getItemById(itemId)
                 .orElseThrow(() -> new CommonException(ResponseCode.NOT_FOUND_ITEM));
 
-        item.setKey(item.getKey()+item.getId().toString());
+        item.setItemKey(item.getItemKey()+item.getId().toString());
 
         item.setIsActive(false);
 

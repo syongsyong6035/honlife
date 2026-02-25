@@ -53,7 +53,7 @@ public class ItemService {
 
                     return ItemDTO.builder()
                             .id(i.getId())
-                            .itemKey(i.getKey())
+                            .itemKey(i.getItemKey())
                             .name(i.getName())
                             .description(i.getDescription())
                             .type(i.getType())
@@ -103,8 +103,8 @@ public class ItemService {
      * itemKeyExists,mapToDTO,mapToEntity,get,getReferencedWarning
      * Item Unique 보장을 위함
      */
-    public boolean itemKeyExists(final String key) {
-        return itemRepository.existsByKeyIgnoreCase(key);
+    public boolean itemKeyExists(final String itemKey) {
+        return itemRepository.existsByItemKeyIgnoreCase(itemKey);
     }
 
     private ItemDTO mapToDTO(final Item item, final ItemDTO itemDTO) {
@@ -112,7 +112,7 @@ public class ItemService {
         itemDTO.setUpdatedAt(item.getUpdatedAt());
         itemDTO.setIsActive(item.getIsActive());
         itemDTO.setId(item.getId());
-        itemDTO.setItemKey(item.getKey());
+        itemDTO.setItemKey(item.getItemKey());
         itemDTO.setName(item.getName());
         itemDTO.setPrice(item.getPrice());
         itemDTO.setType(item.getType());
@@ -123,7 +123,7 @@ public class ItemService {
         item.setCreatedAt(itemDTO.getCreatedAt());
         item.setUpdatedAt(itemDTO.getUpdatedAt());
         item.setIsActive(itemDTO.getIsActive());
-        item.setKey(itemDTO.getItemKey());
+        item.setItemKey(itemDTO.getItemKey());
         item.setName(itemDTO.getName());
         item.setPrice(itemDTO.getPrice());
         item.setType(itemDTO.getType());
