@@ -84,7 +84,7 @@ public class BadgeService {
 
             return BadgeStatusDTO.builder()
                 .badgeId(badge.getId())
-                .badgeKey(badge.getKey())
+                .badgeKey(badge.getBadgeKey())
                 .badgeName(badge.getName())
                 .tier(badge.getTier())
                 .message(badge.getMessage())
@@ -134,7 +134,7 @@ public class BadgeService {
     @Transactional
     public BadgeRewardDTO claimBadgeReward(String badgeKey, String email) {
         // 1. 배지 조회
-        Badge badge = badgeRepository.findByKeyAndIsActiveTrue(badgeKey)
+        Badge badge = badgeRepository.findByBadgeKeyAndIsActiveTrue(badgeKey)
             .orElseThrow(() -> new NotFoundException(ResponseCode.NOT_FOUND_BADGE));
 
         // 2. 사용자 조회
@@ -169,7 +169,7 @@ public class BadgeService {
         // 9. DTO 반환
         return BadgeRewardDTO.builder()
             .badgeId(badge.getId())
-            .badgeKey(badge.getKey())
+            .badgeKey(badge.getBadgeKey())
             .badgeName(badge.getName())
             .message(badge.getMessage())
             .pointAdded((long) pointToAdd)
@@ -205,7 +205,7 @@ public class BadgeService {
         Long memberId = memberDTO.getId();
 
         // 2. 요청한 배지 조회 (보유 여부 확인)
-        Badge badge = badgeRepository.findByKeyAndIsActiveTrue(badgeKey)
+        Badge badge = badgeRepository.findByBadgeKeyAndIsActiveTrue(badgeKey)
             .orElseThrow(() -> new NotFoundException(ResponseCode.NOT_FOUND_BADGE));
 
         MemberBadge targetBadge = memberBadgeRepository.findByMemberIdAndBadge(memberId, badge)
@@ -215,7 +215,7 @@ public class BadgeService {
         Optional<MemberBadge> currentEquipped = memberBadgeRepository.findByMemberIdAndIsEquippedTrue(memberId);
 
         if (currentEquipped.isPresent() &&
-            currentEquipped.get().getBadge().getKey().equals(badgeKey)) {
+            currentEquipped.get().getBadge().getBadgeKey().equals(badgeKey)) {
             // 케이스 1: 같은 배지가 장착됨 → 해제
             currentEquipped.get().setIsEquipped(false);
             memberBadgeRepository.save(currentEquipped.get());
@@ -238,7 +238,7 @@ public class BadgeService {
         badgeDTO.setUpdatedAt(badge.getUpdatedAt());
         badgeDTO.setIsActive(badge.getIsActive());
         badgeDTO.setId(badge.getId());
-        badgeDTO.setKey(badge.getKey());
+        badgeDTO.setBadgeKey(badge.getBadgeKey());
         badgeDTO.setName(badge.getName());
         badgeDTO.setTier(badge.getTier());
         badgeDTO.setMessage(badge.getMessage());
@@ -252,7 +252,7 @@ public class BadgeService {
         badge.setCreatedAt(badgeDTO.getCreatedAt());
         badge.setUpdatedAt(badgeDTO.getUpdatedAt());
         badge.setIsActive(badgeDTO.getIsActive());
-        badge.setKey(badgeDTO.getKey());
+        badge.setBadgeKey(badgeDTO.getBadgeKey());
         badge.setName(badgeDTO.getName());
         badge.setTier(badgeDTO.getTier());
         badge.setMessage(badgeDTO.getMessage());

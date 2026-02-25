@@ -83,7 +83,7 @@ public class MemberBadgeService {
 
                     // Badge 정보
                     .badgeId(badge.getId())
-                    .badgeKey(badge.getKey())
+                    .badgeKey(badge.getBadgeKey())
                     .badgeName(badge.getName())
                     .badgeTier(badge.getTier())
                     .badgeInfo(badge.getInfo())
@@ -169,7 +169,7 @@ public class MemberBadgeService {
             .memberBadgeId(equippedBadge.getId())
             .receivedDate(equippedBadge.getCreatedAt())
             .badgeId(badge.getId())
-            .badgeKey(badge.getKey())
+            .badgeKey(badge.getBadgeKey())
             .badgeName(badge.getName())
             .badgeTier(badge.getTier())
             .badgeInfo(badge.getInfo())

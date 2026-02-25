@@ -36,7 +36,7 @@ public class MemberEventQuestDTO {
             .questId(eventQuestProgress.getEventQuest().getId())
             .progressId(eventQuestProgress.getId())
             .categoryId(category != null ? category.getId() : null)
-            .questKey(eventQuestProgress.getEventQuest().getKey())
+            .questKey(eventQuestProgress.getEventQuest().getEventKey())
             .questName(eventQuestProgress.getEventQuest().getName())
             .target(eventQuestProgress.getEventQuest().getTarget())
             .progress(eventQuestProgress.getProgress())

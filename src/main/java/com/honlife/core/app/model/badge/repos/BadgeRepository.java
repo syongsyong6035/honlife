@@ -16,7 +16,7 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
     /**
      * 배지 키로 배지 조회
      */
-    Optional<Badge> findByKey(String key);
+    Optional<Badge> findByBadgeKey(String badgeKey);
 
     /**
      * 활성화된 모든 배지 조회 (페이지네이션)
@@ -31,7 +31,7 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
     /**
      * 키로 활성화된 배지 조회
      */
-    Optional<Badge> findByKeyAndIsActiveTrue(String key);
+    Optional<Badge> findByBadgeKeyAndIsActiveTrue(String badgeKey);
 
     /**
      * 카테고리 id로 활성화된 배지 조회

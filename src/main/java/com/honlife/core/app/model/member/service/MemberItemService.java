@@ -85,7 +85,7 @@ public class MemberItemService {
             Item item = tuple.get(QItem.item);
             return MemberItemDTOCustom.builder()
                     .id(item.getId())
-                    .itemKey(item.getKey())
+                    .itemKey(item.getItemKey())
                     .itemName(item.getName())
                     .itemDescription(item.getDescription())
                     .itemtype(item.getType())

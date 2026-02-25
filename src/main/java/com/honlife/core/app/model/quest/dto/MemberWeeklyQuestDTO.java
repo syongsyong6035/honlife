@@ -34,7 +34,7 @@ public class MemberWeeklyQuestDTO {
             .questId(weeklyQuestProgress.getWeeklyQuest().getId())
             .progressId(weeklyQuestProgress.getId())
             .categoryId(category != null ? category.getId() : null)
-            .questKey(weeklyQuestProgress.getWeeklyQuest().getKey())
+            .questKey(weeklyQuestProgress.getWeeklyQuest().getQuestKey())
             .questName(weeklyQuestProgress.getWeeklyQuest().getName())
             .target(weeklyQuestProgress.getWeeklyQuest().getTarget())
             .progress(weeklyQuestProgress.getProgress())

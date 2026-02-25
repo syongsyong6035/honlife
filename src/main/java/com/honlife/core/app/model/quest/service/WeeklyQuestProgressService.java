@@ -56,7 +56,7 @@ public class WeeklyQuestProgressService {
 
         return memberWeeklyQuestProgressList.stream()
             .map(progress ->
-                MemberWeeklyQuestDTO.fromEntity(progress, pointPolicyService.getPoint(progress.getWeeklyQuest().getKey(), PointSourceType.WEEKLY)))
+                MemberWeeklyQuestDTO.fromEntity(progress, pointPolicyService.getPoint(progress.getWeeklyQuest().getQuestKey(), PointSourceType.WEEKLY)))
             .collect(Collectors.toList());
     }
 
@@ -96,7 +96,7 @@ public class WeeklyQuestProgressService {
         if(progress < target) throw new CommonException(ResponseCode.BAD_REQUEST);
 
         // add point to member
-        String questKey = weeklyQuestProgress.getWeeklyQuest().getKey();
+        String questKey = weeklyQuestProgress.getWeeklyQuest().getQuestKey();
         memberPointService.addPoint(userEmail, questKey, PointSourceType.WEEKLY);
 
         // check as done

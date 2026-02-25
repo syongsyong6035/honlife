@@ -49,7 +49,7 @@ public class EventQuestProgressService {
         return memberEventQuestProgressList
             .stream()
             .map(progress ->
-                MemberEventQuestDTO.fromEntity(progress, pointPolicyService.getPoint(progress.getEventQuest().getKey(), PointSourceType.EVENT)))
+                MemberEventQuestDTO.fromEntity(progress, pointPolicyService.getPoint(progress.getEventQuest().getEventKey(), PointSourceType.EVENT)))
             .collect(Collectors.toList());
     }
 
@@ -70,7 +70,7 @@ public class EventQuestProgressService {
         if(progress < target) throw new CommonException(ResponseCode.BAD_REQUEST);
 
         // add point to member
-        String questKey = eventQuestProgress.getEventQuest().getKey();
+        String questKey = eventQuestProgress.getEventQuest().getEventKey();
         memberPointService.addPoint(userEmail, questKey, PointSourceType.EVENT);
 
         // check as done
