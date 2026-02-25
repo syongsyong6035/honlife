@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,17 +19,7 @@ import lombok.Setter;
 public class Notification {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-        name = "notification_sequence",
-        sequenceName = "notification_sequence",
-        allocationSize = 1,
-        initialValue = 10000
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "notification_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column

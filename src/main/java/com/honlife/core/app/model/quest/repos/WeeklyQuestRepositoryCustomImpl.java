@@ -21,7 +21,7 @@ public class WeeklyQuestRepositoryCustomImpl implements WeeklyQuestRepositoryCus
         return queryFactory
             .selectFrom(weeklyQuest)
             .where(weeklyQuest.isActive.isTrue())
-            .orderBy(Expressions.numberTemplate(Double.class, "function('RANDOM')").asc())
+            .orderBy(Expressions.numberTemplate(Double.class, "function('RAND')").asc())
             .limit(count)
             .fetch();
     }

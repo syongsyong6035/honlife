@@ -7,7 +7,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import com.honlife.core.app.model.common.BaseEntity;
@@ -20,17 +19,7 @@ import com.honlife.core.app.model.point.code.PointSourceType;
 public class PointPolicy extends BaseEntity {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-            name = "point_policy_sequence",
-            sequenceName = "point_policy_sequence",
-            allocationSize = 1,
-            initialValue = 10000
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "point_policy_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column

@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -33,17 +32,7 @@ import com.honlife.core.app.model.member.domain.Member;
 public class Category extends BaseEntity {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-        name = "category_sequence",
-        sequenceName = "category_sequence",
-        allocationSize = 1,
-        initialValue = 10000
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "category_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

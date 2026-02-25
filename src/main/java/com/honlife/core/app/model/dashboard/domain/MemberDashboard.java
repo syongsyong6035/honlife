@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,17 +26,7 @@ import lombok.Setter;
 public class MemberDashboard {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-        name = "member_dashboard_sequence",
-        sequenceName = "member_dashboard_sequence",
-        allocationSize = 1,
-        initialValue = 10000
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "member_dashboard_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

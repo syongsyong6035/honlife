@@ -14,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.LocalDate;
@@ -35,17 +34,7 @@ import lombok.Setter;
 public class BadgeProgress extends BaseEntity {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-        name = "badge_progress_sequence",
-        sequenceName = "badge_progress_sequence",
-        allocationSize = 1,
-        initialValue = 10000
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "badge_progress_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
