@@ -96,7 +96,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
     @Override
     public List<Object[]> findTotalMembersByWeek(LocalDate startDate, LocalDate endDate) {
         DateTemplate<LocalDate> weekStartFunc = Expressions.dateTemplate(LocalDate.class,
-            "CAST(DATE_TRUNC('week', {0}) AS date)", member.createdAt);
+            "DATE_FORMAT({0}, '%Y-%m-%d')", member.createdAt);
 
         return queryFactory.select(
                 weekStartFunc,
@@ -124,7 +124,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
     @Override
     public List<Object[]> findNewMembersByWeek(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         DateTemplate<LocalDate> weekStartFunc = Expressions.dateTemplate(LocalDate.class,
-            "CAST(DATE_TRUNC('week', {0}) AS date)", member.createdAt);
+            "DATE_FORMAT({0}, '%Y-%m-%d')", member.createdAt);
 
         return queryFactory.select(
                 weekStartFunc,
@@ -152,7 +152,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
     @Override
     public List<Object[]> findTotalMembersByMonth(LocalDate startDate, LocalDate endDate) {
         DateTemplate<LocalDate> monthStartFunc = Expressions.dateTemplate(LocalDate.class,
-            "CAST(DATE_TRUNC('month', {0}) AS date)", member.createdAt);
+            "DATE_FORMAT({0}, '%Y-%m-01')", member.createdAt);
 
         return queryFactory.select(
                 monthStartFunc,
@@ -180,7 +180,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
     @Override
     public List<Object[]> findNewMembersByMonth(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         DateTemplate<LocalDate> monthStartFunc = Expressions.dateTemplate(LocalDate.class,
-            "CAST(DATE_TRUNC('month', {0}) AS date)", member.createdAt);
+            "DATE_FORMAT({0}, '%Y-%m-01')", member.createdAt);
 
         return queryFactory.select(
                 monthStartFunc,
