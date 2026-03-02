@@ -14,14 +14,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${front-server.local-domain}")
     private String frontLocalServer;
 
-//    @Value("${app.domain}")
-//    private String appDomain;
+    @Value("${app.domain}")
+    private String appDomain;
     
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
             .allowedOrigins(frontProdServer, frontLocalServer)
-//            .allowedOrigins(appDomain)
+            .allowedOrigins(appDomain)
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
             .allowedHeaders("*")
             .allowCredentials(true)
